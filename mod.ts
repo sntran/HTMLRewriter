@@ -4,6 +4,25 @@ import {
   HTMLRewriter as BaseHTMLRewriter,
 } from "npm:html-rewriter-wasm@0.4.1";
 
+/**
+ * An API for traversing and transforming HTML documents.
+ *
+ * Example:
+ *
+ * ```ts
+ * import { HTMLRewriter } from "./mod.ts";
+ *
+ * const rewriter = new HTMLRewriter();
+ * rewriter.on("img, iframe", {
+ *   element(element) {
+ *     if (!element.hasAttribute("loading")) {
+ *       element.setAttribute("loading", "lazy");
+ *     }
+ *   },
+ * });
+ * rewriter.transform(await fetch("https://example.com"));
+ * ```
+ */
 export class HTMLRewriter {
   #elementHandlers: Array<[string, ElementHandlers]> = [];
   #documentHandlers: Array<DocumentHandlers> = [];
