@@ -1,4 +1,4 @@
-import { HTMLRewriter as BaseHTMLRewriter } from "npm:html-rewriter-wasm";
+import { HTMLRewriter as BaseHTMLRewriter } from "npm:html-rewriter-wasm@0.4.1";
 
 export class HTMLRewriter {
   #elementHandlers = [];
