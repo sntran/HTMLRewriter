@@ -1,5 +1,5 @@
 {
   "name": "@sntran/html-rewriter",
   "version": "0.1.0",
-  "exports": "./mod.js"
+  "exports": "./mod.ts"
 }
