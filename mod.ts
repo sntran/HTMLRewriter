@@ -1,5 +1,6 @@
 import {
-  DocumentHandlers, ElementHandlers,
+  DocumentHandlers,
+  ElementHandlers,
   HTMLRewriter as BaseHTMLRewriter,
 } from "npm:html-rewriter-wasm@0.4.1";
 
@@ -14,7 +15,7 @@ export class HTMLRewriter {
    * @param {DocumentHandlers} handlers
    * @returns {this}
    */
-  onDocument(handlers: DocumentHandlers) {
+  onDocument(handlers: DocumentHandlers): this {
     this.#documentHandlers.push(handlers);
     return this;
   }
@@ -25,7 +26,7 @@ export class HTMLRewriter {
    * @param {ElementHandlers} handlers
    * @returns {this}
    */
-  on(selector: string, handlers: ElementHandlers) {
+  on(selector: string, handlers: ElementHandlers): this {
     this.#elementHandlers.push([selector, handlers]);
     return this;
   }
@@ -35,7 +36,7 @@ export class HTMLRewriter {
    * @param {Response} response
    * @returns {Response}
    */
-  transform(response: Response) {
+  transform(response: Response): Response {
     const body = response.body;
     if (!body) {
       return response;
