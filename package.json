@@ -1,9 +1,6 @@
 {
   "name": "@sntran/html-rewriter",
   "version": "0.2.0",
-  "description": "HTMLRewriter for all platforms.",
-  "type": "module",
-  "main": "mod.js",
   "exports": {
     ".": {
       "bun": "./bun.js",
@@ -11,6 +8,9 @@
       "default": "./mod.js"
     }
   },
+  "description": "HTMLRewriter for all platforms.",
+  "type": "module",
+  "main": "mod.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
