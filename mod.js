@@ -1,8 +1,12 @@
-import {
-  DocumentHandlers,
-  ElementHandlers,
-  HTMLRewriter as BaseHTMLRewriter,
-} from "npm:html-rewriter-wasm@0.4.1";
+import { HTMLRewriter as BaseHTMLRewriter } from "html-rewriter-wasm";
+
+/**
+ * @typedef {import("html-rewriter-wasm").DocumentHandlers} DocumentHandlers
+ */
+
+/**
+ * @typedef {import("html-rewriter-wasm").ElementHandlers} ElementHandlers
+ */
 
 /**
  * An API for traversing and transforming HTML documents.
@@ -10,7 +14,7 @@ import {
  * Example:
  *
  * ```ts
- * import { HTMLRewriter } from "./mod.ts";
+ * import { HTMLRewriter } from "./mod.js";
  *
  * const rewriter = new HTMLRewriter();
  * rewriter.on("img, iframe", {
@@ -24,8 +28,14 @@ import {
  * ```
  */
 export class HTMLRewriter {
-  #elementHandlers: Array<[string, ElementHandlers]> = [];
-  #documentHandlers: Array<DocumentHandlers> = [];
+  /**
+   * @type {Array<[string, ElementHandlers]>}
+   */
+  #elementHandlers = [];
+  /**
+   * @type {Array<DocumentHandlers>}
+   */
+  #documentHandlers = [];
 
   constructor() {}
 
@@ -34,7 +44,7 @@ export class HTMLRewriter {
    * @param {DocumentHandlers} handlers
    * @returns {this}
    */
-  onDocument(handlers: DocumentHandlers): this {
+  onDocument(handlers) {
     this.#documentHandlers.push(handlers);
     return this;
   }
@@ -45,7 +55,7 @@ export class HTMLRewriter {
    * @param {ElementHandlers} handlers
    * @returns {this}
    */
-  on(selector: string, handlers: ElementHandlers): this {
+  on(selector, handlers) {
     this.#elementHandlers.push([selector, handlers]);
     return this;
   }
@@ -55,7 +65,7 @@ export class HTMLRewriter {
    * @param {Response} response
    * @returns {Response}
    */
-  transform(response: Response): Response {
+  transform(response) {
     const body = response.body;
     if (!body) {
       return response;
@@ -63,7 +73,10 @@ export class HTMLRewriter {
 
     const elementHandlers = this.#elementHandlers;
     const documentHandlers = this.#documentHandlers;
-    let rewriter: BaseHTMLRewriter;
+    /**
+     * @type {BaseHTMLRewriter}
+     */
+    let rewriter;
 
     const { readable, writable } = new TransformStream({
       start(controller) {

@@ -1,0 +1,33 @@
+{
+  "name": "@sntran/html-rewriter",
+  "version": "0.2.0",
+  "description": "HTMLRewriter for all platforms.",
+  "type": "module",
+  "main": "mod.js",
+  "exports": {
+    ".": {
+      "bun": "./bun.js",
+      "workerd": "./workerd.js",
+      "default": "./mod.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sntran/htmlrewriter.git"
+  },
+  "keywords": [
+    "HTMLRewriter"
+  ],
+  "author": "Trần Nguyễn Sơn",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/sntran/htmlrewriter/issues"
+  },
+  "homepage": "https://github.com/sntran/htmlrewriter#readme",
+  "dependencies": {
+    "html-rewriter-wasm": "^0.4.1"
+  }
+}

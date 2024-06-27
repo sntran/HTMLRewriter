@@ -23,7 +23,7 @@ export default {
         if (attribute) {
           element.setAttribute(
             this.attributeName,
-            attribute.replace(OLD_URL, NEW_URL)
+            attribute.replace(OLD_URL, NEW_URL),
           );
         }
       }
