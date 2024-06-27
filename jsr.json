@@ -2,10 +2,6 @@
   "name": "@sntran/html-rewriter",
   "version": "0.2.0",
   "exports": {
-    ".": {
-      "bun": "./bun.js",
-      "workerd": "./workerd.js",
-      "default": "./mod.js"
-    }
+    ".": "./mod.js"
   }
 }
