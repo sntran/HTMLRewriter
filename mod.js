@@ -98,12 +98,16 @@ export class HTMLRewriter {
       flush: () => rewriter.end(),
     });
 
-    const promise = response.body.pipeTo(writable);
+    const promise = body.pipeTo(writable);
     promise.catch(() => {
     }).finally(() => rewriter.free());
 
-    return new Response(readable, {
-      headers: { "Content-Type": "text/html" },
-    });
+    // Return a response with the transformed body, copying over headers, etc
+    response = new Response(readable, response);
+    // If Content-Length is set, it's probably going to be wrong, since we're
+    // rewriting content, so remove it
+    response.headers.delete("Content-Length");
+
+    return response;
   }
 }
